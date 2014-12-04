@@ -1,0 +1,36 @@
+[user]
+  name = Patrick Koperwas
+  email = patrickkoperwas@gmail.com
+[alias]
+  co = checkout
+  cm = commit
+  st = status
+  br = branch
+  df = diff --color
+  dfom = diff master --color
+  pl = pull
+  ps = push
+  hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  su = submodule update --init --recursive
+[push]
+  default = current
+[core]
+  editor = vim
+  autocrlf = input
+[color]
+  ui = auto
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+  whitespace = red reverse
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
