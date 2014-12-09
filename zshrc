@@ -22,6 +22,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 export PATH="/usr/local/rbenv/shims:/usr/local/rbenv/bin:/usr/local/pgsql/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/opt/ruby/bin/"
+eval "$(rbenv init -)"
 
 # Bin Stubs
 export PATH="./bin:$PATH"
