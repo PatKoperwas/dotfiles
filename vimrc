@@ -59,6 +59,8 @@ Bundle 'airblade/vim-gitgutter'
 Bundle 'guns/vim-clojure-highlight'
 Bundle 'guns/vim-clojure-static'
 Bundle 'itchyny/lightline.vim'
+Bundle 'jgdavey/tslime.vim'
+Bundle 'junegunn/vim-easy-align'
 Bundle 'kana/vim-textobj-user'
 Bundle 'morhetz/gruvbox'
 Bundle 'nelstrom/vim-textobj-rubyblock'
@@ -212,3 +214,12 @@ map <C-n> :NERDTreeToggle<CR>
 let g:vimrubocop_config = '.rubocop.yml'
 let g:vimrubocop_rubocop_cmd = 'bundle exec rubocop '
 nmap <Leader>c :RuboCop<CR>
+
+" Easy Align
+vmap <Enter> <Plug>(EasyAlign)
+
+" RSpec
+let g:rspec_command = 'call Send_to_Tmux("bin/rspec {spec}\n")'
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
