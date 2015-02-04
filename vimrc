@@ -7,9 +7,9 @@ set nocompatible
 set hidden
 set history=10000
 set expandtab
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
 set autoindent
 set laststatus=2
 set showmatch
@@ -63,8 +63,10 @@ Bundle 'jgdavey/tslime.vim'
 Bundle 'junegunn/vim-easy-align'
 Bundle 'kana/vim-textobj-user'
 Bundle 'morhetz/gruvbox'
+Bundle 'mxw/vim-jsx.git'
 Bundle 'nelstrom/vim-textobj-rubyblock'
 Bundle 'ngmy/vim-rubocop'
+Bundle "pangloss/vim-javascript"
 Bundle 'scrooloose/nerdtree'
 Bundle 'skalnik/vim-vroom'
 Bundle 'thoughtbot/vim-rspec'
@@ -219,7 +221,8 @@ nmap <Leader>c :RuboCop<CR>
 vmap <Enter> <Plug>(EasyAlign)
 
 " RSpec
-let g:rspec_command = 'call Send_to_Tmux("bin/rspec {spec}\n")'
+let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
+"let g:rspec_command = 'call Send_to_Tmux("ruby {spec}\n")'
 map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
