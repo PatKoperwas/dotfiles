@@ -95,6 +95,9 @@ augroup vimrcEx
 augroup END
 
 autocmd Filetype gitcommit setlocal spell textwidth=72
+au BufRead,BufNewFile *.md setlocal textwidth=80
+autocmd BufRead,BufNewFile *.md setlocal spell
+
 
 " COLOR
 " ----
