@@ -47,6 +47,7 @@ let mapleader = "\\"
 " ------
 nmap k gk
 nmap j gj
+set pastetoggle=<leader>p
 
 " VUNDLE
 " -----
