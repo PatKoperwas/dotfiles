@@ -187,6 +187,7 @@ map <leader>F :CommandTFlush<cr>\|:CommandT %%<cr>
 
 let g:CommandTMaxFiles=40000
 let g:CommandTMatchWindowReverse = 1
+let g:CommandTWildIgnore=&wildignore . ",**/node_modules/*,tmp/*"
 
 " Files and backups
 " -----------------
