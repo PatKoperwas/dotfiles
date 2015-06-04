@@ -68,11 +68,13 @@ Bundle 'mxw/vim-jsx.git'
 Bundle 'nelstrom/vim-textobj-rubyblock'
 Bundle 'ngmy/vim-rubocop'
 Bundle "pangloss/vim-javascript"
+Bundle "rking/ag.vim"
 Bundle 'scrooloose/nerdtree'
 Bundle 'skalnik/vim-vroom'
 Bundle 'thoughtbot/vim-rspec'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'tpope/vim-fireplace'
+Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
