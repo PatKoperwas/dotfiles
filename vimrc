@@ -52,6 +52,8 @@ set pastetoggle=<leader>p
 " VUNDLE
 " -----
 set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.fzf
+
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
@@ -79,7 +81,6 @@ Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'vim-ruby/vim-ruby'
-Bundle 'wincent/command-t'
 
 " CUSTOM AUTOCMDS
 " ---------------
@@ -90,7 +91,7 @@ augroup vimrcEx
     \ if line("'\"") > 0 && line("'\"") <= line("$") |
     \ exe "normal g`\"" |
     \ endif
-        
+
     "for ruby, autoindent with two spaces, always expand tabs
     autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
 
@@ -104,7 +105,7 @@ autocmd BufRead,BufNewFile *.md setlocal spell
 
 " COLOR
 " ----
-set t_Co=256 
+set t_Co=256
 set background=dark
 colorscheme gruvbox
 let g:gruvbox_termcolors=16
@@ -153,7 +154,7 @@ endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <s-tab> <c-n>
 
-" MAPS TO JUMP TO SPECIFIC COMMAND-T TARGETS AND FILES
+" MAPS TO JUMP TO SPECIFIC FZF TARGETS AND FILES
 " ----------------------------------------------------
 map <leader>gr :topleft :split config/routes.rb<cr>
 function! ShowRoutes()
@@ -174,27 +175,22 @@ function! ShowRoutes()
 endfunction
 
 map <leader>gR :call ShowRoutes()<cr>
-map <leader>ga :CommandTFlush<cr>\|:CommandT app/assets<cr>
-map <leader>gv :CommandTFlush<cr>\|:CommandT app/views<cr>
-map <leader>gc :CommandTFlush<cr>\|:CommandT app/controllers<cr>
-map <leader>gm :CommandTFlush<cr>\|:CommandT app/models<cr>
-map <leader>gh :CommandTFlush<cr>\|:CommandT app/helpers<cr>
-map <leader>gs :CommandTFlush<cr>\|:CommandT spec/<cr>
-map <leader>gl :CommandTFlush<cr>\|:CommandT lib<cr>
-map <leader>gp :CommandTFlush<cr>\|:CommandT config<cr>
-map <leader>gf :CommandTFlush<cr>\|:CommandT features<cr>
 map <leader>gg :topleft 20 :split Gemfile<cr>
-map <leader>gt :CommandTFlush<cr>\|:CommandTTag<cr>
-map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
-map <leader>F :CommandTFlush<cr>\|:CommandT %%<cr>
 
-let g:CommandTMaxFiles=40000
-let g:CommandTMatchWindowReverse = 1
-let g:CommandTWildIgnore=&wildignore . ",**/node_modules/*,tmp/*"
+map <Leader>f :FZF<CR>
+map <Leader>ga :FZF app/assets<CR>
+map <Leader>gv :FZF app/views<CR>
+map <Leader>gc :FZF app/controllers<CR>
+map <Leader>gm :FZF app/models<CR>
+map <Leader>gh :FZF app/helpers<CR>
+map <leader>gs :FZF spec/<cr>
+map <leader>gl :FZF lib<cr>
+map <leader>gp :FZF config<cr>
+map <leader>gf :FZF spec/features<cr>
 
 " Files and backups
 " -----------------
-" Turn backup off, 
+" Turn backup off,
 set nobackup
 set nowb
 set noswapfile
