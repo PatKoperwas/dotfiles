@@ -62,6 +62,7 @@ Bundle 'airblade/vim-gitgutter'
 Bundle 'guns/vim-clojure-highlight'
 Bundle 'guns/vim-clojure-static'
 Bundle 'itchyny/lightline.vim'
+Bundle 'janko-m/vim-test'
 Bundle 'jgdavey/tslime.vim'
 Bundle 'junegunn/vim-easy-align'
 Bundle 'kana/vim-textobj-user'
@@ -72,7 +73,6 @@ Bundle 'ngmy/vim-rubocop'
 Bundle "pangloss/vim-javascript"
 Bundle "rking/ag.vim"
 Bundle 'scrooloose/nerdtree'
-Bundle 'skalnik/vim-vroom'
 Bundle 'thoughtbot/vim-rspec'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'tpope/vim-fireplace'
@@ -199,10 +199,11 @@ set noswapfile
 " ------------
 
 " Vroom
-let g:vroom_detect_spec_helper = 1
-let g:vroom_use_spring = 1
-let g:vroom_use_binstubs = 1
-let g:vroom_cucumber_path = 'cucumber'
+nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> <leader>T :TestFile<CR>
+nmap <silent> <leader>a :TestSuite<CR>
+nmap <silent> <leader>l :TestLast<CR>
+nmap <silent> <leader>g :TestVisit<CR>
 
 " LightLine
 let g:lightline = {
@@ -226,9 +227,9 @@ vmap <Enter> <Plug>(EasyAlign)
 " RSpec
 let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
 "let g:rspec_command = 'call Send_to_Tmux("ruby {spec}\n")'
-map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
+"map <Leader>t :call RunCurrentSpecFile()<CR>
+"map <Leader>s :call RunNearestSpec()<CR>
+"map <Leader>l :call RunLastSpec()<CR>
 
 " CTags
 :set tags=.git/tags
