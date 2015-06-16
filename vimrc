@@ -188,6 +188,24 @@ map <leader>gl :FZF lib<cr>
 map <leader>gp :FZF config<cr>
 map <leader>gf :FZF spec/features<cr>
 
+function! s:buflist()
+  redir => ls
+  silent ls
+  redir END
+  return split(ls, '\n')
+endfunction
+
+function! s:bufopen(e)
+  execute 'buffer' matchstr(a:e, '^[ 0-9]*')
+endfunction
+
+nnoremap <silent> <Leader>b :call fzf#run({
+\   'source':  reverse(<sid>buflist()),
+\   'sink':    function('<sid>bufopen'),
+\   'options': '+m',
+\   'down':    len(<sid>buflist()) + 2
+\ })<CR>
+
 " Files and backups
 " -----------------
 " Turn backup off,
