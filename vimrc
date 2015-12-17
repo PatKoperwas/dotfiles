@@ -1,5 +1,11 @@
 let g:gruvbox_italic=0
 
+" VUNDLE
+" -----
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BASIC EDITING CONFIGURATION
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -49,38 +55,34 @@ nmap k gk
 nmap j gj
 set pastetoggle=<leader>p
 
-" VUNDLE
-" -----
-set rtp+=~/.vim/bundle/vundle/
 set rtp+=~/.fzf
 
-call vundle#rc()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'guns/vim-clojure-highlight'
+Plugin 'guns/vim-clojure-static'
+Plugin 'itchyny/lightline.vim'
+Plugin 'janko-m/vim-test'
+Plugin 'jgdavey/tslime.vim'
+Plugin 'junegunn/vim-easy-align'
+Plugin 'kana/vim-textobj-user'
+Plugin 'morhetz/gruvbox'
+Plugin 'mxw/vim-jsx.git'
+Plugin 'nelstrom/vim-textobj-rubyblock'
+Plugin 'ngmy/vim-rubocop'
+Plugin 'pangloss/vim-javascript'
+Plugin 'rking/ag.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'thoughtbot/vim-rspec'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'tpope/vim-fireplace'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-surround'
+Plugin 'vim-ruby/vim-ruby'
 
-Bundle 'gmarik/vundle'
-
-Bundle 'airblade/vim-gitgutter'
-Bundle 'guns/vim-clojure-highlight'
-Bundle 'guns/vim-clojure-static'
-Bundle 'itchyny/lightline.vim'
-Bundle 'janko-m/vim-test'
-Bundle 'jgdavey/tslime.vim'
-Bundle 'junegunn/vim-easy-align'
-Bundle 'kana/vim-textobj-user'
-Bundle 'morhetz/gruvbox'
-Bundle 'mxw/vim-jsx.git'
-Bundle 'nelstrom/vim-textobj-rubyblock'
-Bundle 'ngmy/vim-rubocop'
-Bundle "pangloss/vim-javascript"
-Bundle "rking/ag.vim"
-Bundle 'scrooloose/nerdtree'
-Bundle 'thoughtbot/vim-rspec'
-Bundle 'tomtom/tcomment_vim'
-Bundle 'tpope/vim-fireplace'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-surround'
-Bundle 'vim-ruby/vim-ruby'
+call vundle#end()
 
 " CUSTOM AUTOCMDS
 " ---------------

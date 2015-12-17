@@ -34,3 +34,13 @@ export PATH="/usr/local/heroku/bin:$PATH"
 # NVM
 export NVM_DIR="/home/vagrant/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+# MySQL
+MYSQL=/usr/local/mysql/bin
+export PATH=$PATH:$MYSQL
+export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH
+
+# PostgreSQL
+export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin
