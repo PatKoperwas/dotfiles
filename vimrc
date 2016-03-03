@@ -1,15 +1,40 @@
 let g:gruvbox_italic=0
+set nocompatible
+filetype off
 
 " VUNDLE
 " -----
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'itchyny/lightline.vim'
+Plugin 'janko-m/vim-test'
+Plugin 'jgdavey/tslime.vim'
+Plugin 'junegunn/vim-easy-align'
+Plugin 'kana/vim-textobj-user'
+Plugin 'morhetz/gruvbox'
+Plugin 'mxw/vim-jsx.git'
+Plugin 'nelstrom/vim-textobj-rubyblock'
+Plugin 'ngmy/vim-rubocop'
+Plugin 'pangloss/vim-javascript'
+Plugin 'rking/ag.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-surround'
+Plugin 'vim-ruby/vim-ruby'
+
+call vundle#end()
+
+filetype plugin indent on
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BASIC EDITING CONFIGURATION
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible
 set hidden
 set history=10000
 set expandtab
@@ -28,7 +53,7 @@ set number
 set cmdheight=1
 set switchbuf=useopen
 set numberwidth=6
-set showtabline=2
+set showtabline=0
 set winwidth=90
 
 " Prevent Vim from clobbering the scrollback buffer. See
@@ -44,7 +69,6 @@ set showcmd
 
 set colorcolumn=80
 syntax on
-filetype plugin indent on
 set wildmode=longest,list
 set wildmenu
 let mapleader = "\\"
@@ -57,32 +81,6 @@ set pastetoggle=<leader>p
 
 set rtp+=~/.fzf
 
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'guns/vim-clojure-highlight'
-Plugin 'guns/vim-clojure-static'
-Plugin 'itchyny/lightline.vim'
-Plugin 'janko-m/vim-test'
-Plugin 'jgdavey/tslime.vim'
-Plugin 'junegunn/vim-easy-align'
-Plugin 'kana/vim-textobj-user'
-Plugin 'morhetz/gruvbox'
-Plugin 'mxw/vim-jsx.git'
-Plugin 'nelstrom/vim-textobj-rubyblock'
-Plugin 'ngmy/vim-rubocop'
-Plugin 'pangloss/vim-javascript'
-Plugin 'rking/ag.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'thoughtbot/vim-rspec'
-Plugin 'tomtom/tcomment_vim'
-Plugin 'tpope/vim-fireplace'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-surround'
-Plugin 'vim-ruby/vim-ruby'
-
-call vundle#end()
 
 " CUSTOM AUTOCMDS
 " ---------------
@@ -218,13 +216,6 @@ set noswapfile
 " Plugins
 " ------------
 
-" Vroom
-nmap <silent> <leader>t :TestNearest<CR>
-nmap <silent> <leader>T :TestFile<CR>
-nmap <silent> <leader>a :TestSuite<CR>
-nmap <silent> <leader>l :TestLast<CR>
-nmap <silent> <leader>g :TestVisit<CR>
-
 " LightLine
 let g:lightline = {
   \
@@ -253,3 +244,25 @@ let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
 
 " CTags
 :set tags=.git/tags
+
+" Pry & Debugging
+function! Debugging(direction)
+  let file_name = expand('%')
+  let extension = split(file_name, "/")[-1]
+  let html = matchstr(extension, "html")
+  let js = matchstr(extension, "js")
+
+  let @g = a:direction
+
+  if html == "html"
+    normal! @g <% require "pry"; binding.pry %>
+  elseif js == "js"
+    normal! @g debugger;
+  else
+    normal! @g require "pry"; binding.pry
+  endif
+endfunction
+map <Leader>P :call Debugging("O")<cr>
+
+" Random Commands
+:command ChangeHashSyntax %s/:\([^ ]*\)\(\s*\)=>/\1:/g
