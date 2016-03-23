@@ -5,15 +5,12 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+ZSH_THEME="patkoperwas"
 
 # use vim as the visual editor
 export VISUAL=vim
 export EDITOR=$VISUAL
 export DISABLE_AUTO_TITLE=true
-
-# Dircolors
-eval $(dircolors ~/.dircolors)
 
 # Plugins
 plugins=(git)
@@ -42,3 +39,17 @@ export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH
 
 # PostgreSQL
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin
+
+# OSX Coreutils
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+
+# Dircolors
+eval $(dircolors -b ~/.dircolors)
+alias ls="ls --color=always" 
+export CLICOLOR=1
+
+# Go
+export GOPATH=$HOME/Documents/Code/golang
+export GOROOT=/usr/local/opt/go/libexec
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin
