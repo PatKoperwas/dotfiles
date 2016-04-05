@@ -2,36 +2,36 @@ let g:gruvbox_italic=0
 set nocompatible
 filetype off
 
-" Vundle ----------------------------------------------------------------------
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" Vim Plug --------------------------------------------------------------------
+call plug#begin('~/.vim/plugged')
 
-Plugin 'airblade/vim-gitgutter'
-Plugin 'fatih/vim-go'
-Plugin 'foosoft/vim-argwrap'
-Plugin 'itchyny/lightline.vim'
-Plugin 'janko-m/vim-test'
-Plugin 'junegunn/vim-easy-align'
-Plugin 'kana/vim-textobj-user'
-Plugin 'morhetz/gruvbox'
-Plugin 'mxw/vim-jsx.git'
-Plugin 'nelstrom/vim-textobj-rubyblock'
-Plugin 'ngmy/vim-rubocop'
-Plugin 'pangloss/vim-javascript'
-Plugin 'rking/ag.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'tomtom/tcomment_vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-surround'
-Plugin 'vundlevim/vundle.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'fatih/vim-go'
+Plug 'foosoft/vim-argwrap'
+Plug 'itchyny/lightline.vim'
+Plug 'janko-m/vim-test'
+Plug 'junegunn/vim-easy-align'
+Plug 'kana/vim-textobj-user'
+Plug 'morhetz/gruvbox'
+Plug 'mxw/vim-jsx.git'
+Plug 'nelstrom/vim-textobj-rubyblock'
+Plug 'ngmy/vim-rubocop'
+Plug 'pangloss/vim-javascript'
+Plug 'rking/ag.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'tomtom/tcomment_vim'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'vundlevim/vundle.vim'
 
-call vundle#end()
+call plug#end()
 
 filetype plugin indent on
 syntax on
 
+autocmd! bufwritepost .vimrc source %
 
 " Basic Editing Configuration -------------------------------------------------
 set autoindent
@@ -179,6 +179,11 @@ set nobackup
 set nowb
 set noswapfile
 
+" Vim Go ----------------------------------------------------------------------
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
 
 " Status Line -----------------------------------------------------------------
 let g:Powerline_symbols = 'fancy'
