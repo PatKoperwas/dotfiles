@@ -6,6 +6,7 @@ filetype off
 call plug#begin('~/.vim/plugged')
 
 Plug 'airblade/vim-gitgutter'
+Plug 'elixir-lang/vim-elixir'
 Plug 'fatih/vim-go'
 Plug 'foosoft/vim-argwrap'
 Plug 'itchyny/lightline.vim'
@@ -100,6 +101,8 @@ nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 nnoremap <cr> :nohlsearch<cr>
 nmap <leader>w :w!<cr>
 
+" Close buffer without closing split
+nmap ,d :b#<bar>bd#<CR>
 
 " Custom Autocmds -------------------------------------------------------------
 augroup vimrcEx
@@ -179,11 +182,14 @@ set nobackup
 set nowb
 set noswapfile
 
+
 " Vim Go ----------------------------------------------------------------------
 au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>c <Plug>(go-coverage)
+let g:go_fmt_command = "goimports"
+
 
 " Status Line -----------------------------------------------------------------
 let g:Powerline_symbols = 'fancy'
@@ -211,6 +217,7 @@ vmap <Enter> <Plug>(EasyAlign)
 " vim-test --------------------------------------------------------------------
 nmap <silent> <leader>t :TestNearest<CR>
 nmap <silent> <leader>T :TestFile<CR>
+
 
 " argwrap ---------------------------------------------------------------------
 nnoremap <silent> <leader>a :ArgWrap<CR>

@@ -49,7 +49,10 @@ alias ls="ls --color=always"
 export CLICOLOR=1
 
 # Go
+export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/Documents/Code/golang
-export GOROOT=/usr/local/opt/go/libexec
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin
+
+# Kiex
+test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
