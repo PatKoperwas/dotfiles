@@ -1,0 +1,14 @@
+---
+- hosts: localhost
+  connection: local
+
+  vars:
+    dotfiles_dir: /Users/patrickkoperwas/.dotfiles
+    user: patrickkoperwas
+    home_dir: /Users/patrickkoperwas
+
+  tasks:
+    - include: tasks/dotfiles.yml user=patrickkoperwas
+    - include: tasks/zsh.yml
+    - include: tasks/rbenv.yml user=patrickkoperwas
+

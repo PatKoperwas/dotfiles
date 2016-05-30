@@ -1,0 +1,39 @@
+---
+- name: Install rbenv
+  homebrew: name={{ item }} state=present
+  with_items:
+    - rbenv
+    - ruby-build
+  become: yes
+  become_user: "{{ user }}"
+
+- name: Check if ruby is installed in rbenv
+  command: rbenv version
+  register: rbenv_version
+  become: yes
+  become_user: "{{ user }}"
+  changed_when: false
+
+- name: Install ruby 2.3.1 using rbenv
+  command: "{{ item }}"
+  with_items:
+    - rbenv install 2.3.1
+    - rbenv rehash
+    - rbenv global 2.3.1
+  become: yes
+  become_user: "{{ user }}"
+  when: '"system" in rbenv_version.stdout'
+
+- name: Check if bundler is installed
+  shell: eval "$(rbenv init -)" && gem list bundler
+  register: rbenv_bundler
+  become: yes
+  become_user: "{{ user }}"
+  changed_when: false
+
+- name: Install bundler
+  shell: eval "$(rbenv init -)" && gem install bundler && rbenv rehash
+  become: yes
+  become_user: "{{ user }}"
+  when: '"bundler" not in rbenv_bundler.stdout'
+

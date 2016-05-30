@@ -1,0 +1,33 @@
+---
+- name: Install zsh
+  homebrew: name=zsh state=present
+  when: ansible_os_family == 'Darwin'
+
+- name: Check oh-my-zsh is installed
+  stat: path={{ home_dir}}/.oh-my-zsh
+  register: oh_my_zsh_installed
+
+- name: Install oh-my-zsh
+  shell: curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+  when: oh_my_zsh_installed.stat.exists == false
+
+- name: Add zsh to list of shells
+  become: yes
+  become_method: sudo
+  lineinfile: >
+    dest=/etc/shells
+    regexp=^/usr/local/bin/zsh
+    line=/usr/local/bin/zsh
+  when: ansible_os_family == 'Darwin'
+
+- name: Determine if zsh is default/current shell
+  shell: echo $SHELL
+  register: current_shell
+
+- name: Change to zsh (Mac)
+  shell: chsh -s /usr/local/bin/zsh {{ ansible_env.USER }}
+  when: ansible_os_family == 'Darwin' and current_shell.stdout != '/usr/local/bin/zsh'
+
+- name: Change to zsh (Ubuntu)
+  shell: chsh -s /usr/bin/zsh {{ ansible_env.USER }}
+  when: ansible_os_family == 'Ubuntu' and current_shell.stdout != '/usr/local/bin/zsh'
