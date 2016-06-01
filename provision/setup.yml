@@ -8,7 +8,9 @@
     home_dir: /Users/patrickkoperwas
 
   tasks:
+    - include: tasks/homebrew.yml
     - include: tasks/dotfiles.yml user=patrickkoperwas
     - include: tasks/zsh.yml
     - include: tasks/rbenv.yml user=patrickkoperwas
+    - include: tasks/vim.yml
 

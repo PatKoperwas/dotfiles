@@ -11,6 +11,7 @@ Plug 'fatih/vim-go'
 Plug 'foosoft/vim-argwrap'
 Plug 'itchyny/lightline.vim'
 Plug 'janko-m/vim-test'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/vim-easy-align'
 Plug 'kana/vim-textobj-user'
 Plug 'morhetz/gruvbox'
@@ -53,7 +54,6 @@ set laststatus=2
 set number
 set numberwidth=6
 set pastetoggle=<leader>p
-set rtp+=~/.fzf
 set ruler
 set scrolloff=3
 set shiftwidth=2

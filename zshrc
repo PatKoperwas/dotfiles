@@ -45,7 +45,7 @@ export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 
 # Dircolors
 eval $(dircolors -b ~/.dircolors)
-alias ls="ls --color=always" 
+# alias ls="ls" 
 export CLICOLOR=1
 
 # Go

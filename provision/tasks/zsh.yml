@@ -20,6 +20,9 @@
     line=/usr/local/bin/zsh
   when: ansible_os_family == 'Darwin'
 
+- name: Copy custom theme
+  copy: src=files/patkoperwas.zsh-theme dest={{ home_dir}}/.oh-my-zsh/themes
+
 - name: Determine if zsh is default/current shell
   shell: echo $SHELL
   register: current_shell
