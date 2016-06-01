@@ -2,13 +2,13 @@
 - name: Install Homebrew packages
   homebrew: name={{ item }} state=present
   with_items:
-  - fzf
-  - node
-  - npm
-  - openssl
-  - reattach-to-user-namespace
-  - tmux
-  - vim
+    - fzf
+    - node
+    - npm
+    - openssl
+    - reattach-to-user-namespace
+    - tmux
+    - vim
 
 - name: Install Homebrew Cask Apps
   homebrew_cask: name={{ item }} state=present
