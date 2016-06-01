@@ -26,4 +26,4 @@ fi
 # This should be subsequently updated in shell settings
 export PATH=/usr/local/bin:$PATH
 
-ansible-playbook local.yml -K
+ansible-playbook ./provision/setup.yml -K
