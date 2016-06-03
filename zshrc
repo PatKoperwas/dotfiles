@@ -38,7 +38,7 @@ export PATH=$PATH:$MYSQL
 export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH
 
 # PostgreSQL
-export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin
+export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
 
 # OSX Coreutils
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
