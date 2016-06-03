@@ -13,4 +13,5 @@
     - include: tasks/zsh.yml
     - include: tasks/rbenv.yml
     - include: tasks/vim.yml
+    - include: tasks/go.yml
 
