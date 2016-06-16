@@ -36,4 +36,6 @@
   local = yellow
   remote = green
 [init]
-  templatedir = ~/.git_template
+	templatedir = ~/.git_template
+[diff]
+	compactionHeuristic = true
