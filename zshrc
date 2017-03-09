@@ -26,6 +26,8 @@ export PATH="./bin:$PATH"
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+export FZF_DEFAULT_COMMAND='ag -g ""'
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # NVM
@@ -44,8 +46,7 @@ export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 
 # Dircolors
-eval $(dircolors -b ~/.dircolors)
-# alias ls="ls" 
+# eval $(dircolors -b ~/.dircolors)
 export CLICOLOR=1
 
 # Go
@@ -56,3 +57,6 @@ export PATH=$PATH:$GOROOT/bin
 
 # Kiex
 test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
+
+# Yarn
+export PATH="$PATH:$HOME/.config/yarn/global/node_modules/.bin"

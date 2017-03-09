@@ -15,17 +15,19 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/vim-easy-align'
 Plug 'kana/vim-textobj-user'
 Plug 'morhetz/gruvbox'
-Plug 'mxw/vim-jsx.git'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'ngmy/vim-rubocop'
 Plug 'pangloss/vim-javascript'
+Plug 'posva/vim-vue'
 Plug 'rking/ag.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'tomtom/tcomment_vim'
+Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
+Plug 'vim-syntastic/syntastic'
 Plug 'vundlevim/vundle.vim'
 
 call plug#end()
@@ -64,6 +66,7 @@ set softtabstop=2
 set switchbuf=useopen
 set t_ti= t_te= " Prevent Vim from clobbering the scrollback buffer.
 set tabstop=2
+set timeoutlen=1000 ttimeoutlen=0
 set wildmenu
 set wildmode=longest,list
 set winwidth=90
@@ -79,7 +82,7 @@ let g:gruvbox_termcolors=16
 " Motions & Key Maps ----------------------------------------------------------
 
 " Map Leader Key to back-slash
-let mapleader = "\\"
+let mapleader = " "
 
 nmap k gk
 nmap j gj
@@ -114,7 +117,7 @@ augroup vimrcEx
     \ endif
 
     " for ruby, autoindent with two spaces, always expand tabs
-    autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
+    autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber,yml set ai sw=2 sts=2 et
 
     " for go
     au BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4
@@ -248,4 +251,23 @@ map <Leader>P :call Debugging("O")<cr>
 
 
 " random commands -------------------------------------------------------------
-:command ChangeHashSyntax %s/:\([^ ]*\)\(\s*\)=>/\1:/g
+:command! ChangeHashSyntax %s/:\([^ ]*\)\(\s*\)=>/\1:/g
+
+
+" syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_vue_checkers = ['eslint']
+let g:syntastic_ignore_files = ['**/*.html']
+let g:syntastic_sass_checkers = ['sassc']
+let g:syntastic_scss_checkers = ['sassc']
+
+" closetag
+let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.html.erb"

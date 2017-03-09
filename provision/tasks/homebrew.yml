@@ -10,6 +10,11 @@
     - reattach-to-user-namespace
     - tmux
     - vim
+    - the_silver_searcher
+    - redis
+    - ctags
+    - phantomjs
+    - yarn
 
 - name: Install Homebrew Cask Apps
   homebrew_cask: name={{ item }} state=present
@@ -21,3 +26,5 @@
     - vagrant
     - virtualbox
     - vlc
+    - ngrok 
+    - firefox
