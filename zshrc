@@ -60,3 +60,6 @@ test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
 
 # Yarn
 export PATH="$PATH:$HOME/.config/yarn/global/node_modules/.bin"
+
+# OPAM configuration
+. /Users/patrickkoperwas/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true

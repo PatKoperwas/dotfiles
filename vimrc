@@ -6,6 +6,7 @@ filetype off
 call plug#begin('~/.vim/plugged')
 
 Plug 'airblade/vim-gitgutter'
+Plug 'benmills/vimux'
 Plug 'elixir-lang/vim-elixir'
 Plug 'fatih/vim-go'
 Plug 'foosoft/vim-argwrap'
@@ -17,16 +18,19 @@ Plug 'kana/vim-textobj-user'
 Plug 'morhetz/gruvbox'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'ngmy/vim-rubocop'
+Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 Plug 'pangloss/vim-javascript'
 Plug 'posva/vim-vue'
 Plug 'rking/ag.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'tomtom/tcomment_vim'
+Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --gocode-completer' }
 Plug 'vim-syntastic/syntastic'
 Plug 'vundlevim/vundle.vim'
 
@@ -99,6 +103,9 @@ imap <c-c> <esc>
 " Switch back to previous file
 nnoremap <leader><leader> <c-^>
 
+" Search for word under cursor
+nnoremap K :Ag "\b<C-R><C-W>\b"<CR>:cw<CR>
+
 " Strip trailing whitespace
 nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 nnoremap <cr> :nohlsearch<cr>
@@ -132,18 +139,19 @@ au BufRead,BufNewFile *.md setlocal textwidth=80
 autocmd BufRead,BufNewFile *.md setlocal spell
 
 
-" Multipurpose Tab Key --------------------------------------------------------
-" Indent if we're at the beginning of a line. Else, do completion.
- function! InsertTabWrapper()
-    let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k'
-       return "\<tab>"
-    else
-       return "\<c-p>"
-    endif
-endfunction
-inoremap <tab> <c-r>=InsertTabWrapper()<cr>
-inoremap <s-tab> <c-n>
+" " Multipurpose Tab Key --------------------------------------------------------
+" " Indent if we're at the beginning of a line. Else, do completion.
+"  function! InsertTabWrapper()
+"     let col = col('.') - 1
+"     if !col || getline('.')[col - 1] !~ '\k'
+"        return "\<tab>"
+"     else
+"        return "\<c-p>"
+"        " return "\<C-X>\<C-O>"
+"     endif
+" endfunction
+" inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+" inoremap <s-tab> <c-n>
 
 
 " FZF -------------------------------------------------------------------------
@@ -160,6 +168,7 @@ map <leader>gs :FZF spec/<cr>
 map <leader>gl :FZF lib<cr>
 map <leader>gp :FZF config<cr>
 map <leader>gf :FZF spec/features<cr>
+map <leader>q :bd!<CR>
 
 function! s:buflist()
   redir => ls
@@ -189,9 +198,14 @@ set noswapfile
 " Vim Go ----------------------------------------------------------------------
 au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
-au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>t <Plug>(go-test-func)
 au FileType go nmap <leader>c <Plug>(go-coverage)
 let g:go_fmt_command = "goimports"
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
 
 
 " Status Line -----------------------------------------------------------------
@@ -220,10 +234,12 @@ vmap <Enter> <Plug>(EasyAlign)
 " vim-test --------------------------------------------------------------------
 nmap <silent> <leader>t :TestNearest<CR>
 nmap <silent> <leader>T :TestFile<CR>
+let test#strategy = "vimux"
 
 
 " argwrap ---------------------------------------------------------------------
 nnoremap <silent> <leader>a :ArgWrap<CR>
+let g:argwrap_tail_comma = 1
 
 
 " ctags -----------------------------------------------------------------------
@@ -259,10 +275,10 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+ "let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_vue_checkers = ['eslint']
 let g:syntastic_ignore_files = ['**/*.html']

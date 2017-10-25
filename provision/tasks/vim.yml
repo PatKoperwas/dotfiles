@@ -15,8 +15,11 @@
   become: yes
   become_user: "{{ user }}"
 
-- name: Copy color scheme
+- name: Copy Gruvbox color scheme
   copy: src=files/gruvbox.vim dest={{ home_dir}}/.vim/colors/
+
+- name: Copy Space Dark color scheme
+  copy: src=files/space-dark.vim dest={{ home_dir}}/.vim/colors/
 
 - name: Install Vim-plug
   get_url:
