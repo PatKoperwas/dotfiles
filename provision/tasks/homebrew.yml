@@ -15,6 +15,7 @@
     - ctags
     - phantomjs
     - yarn
+    - dep
 
 - name: Install Homebrew Cask Apps
   homebrew_cask: name={{ item }} state=present
