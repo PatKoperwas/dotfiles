@@ -24,6 +24,9 @@ eval "$(rbenv init -)"
 # Bin Stubs
 export PATH="./bin:$PATH"
 
+# Local Bin 
+export PATH="$HOME/.bin:$PATH"
+
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 export FZF_DEFAULT_COMMAND='ag -g ""'

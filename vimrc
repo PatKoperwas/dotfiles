@@ -30,8 +30,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --gocode-completer' }
-Plug 'vim-syntastic/syntastic'
+" Plug 'Valloric/YouCompleteMe', { 'do': './install.py --gocode-completer' }
+" Plug 'vim-syntastic/syntastic'
 Plug 'vundlevim/vundle.vim'
 
 call plug#end()
@@ -139,19 +139,19 @@ au BufRead,BufNewFile *.md setlocal textwidth=80
 autocmd BufRead,BufNewFile *.md setlocal spell
 
 
-" " Multipurpose Tab Key --------------------------------------------------------
-" " Indent if we're at the beginning of a line. Else, do completion.
-"  function! InsertTabWrapper()
-"     let col = col('.') - 1
-"     if !col || getline('.')[col - 1] !~ '\k'
-"        return "\<tab>"
-"     else
-"        return "\<c-p>"
-"        " return "\<C-X>\<C-O>"
-"     endif
-" endfunction
-" inoremap <tab> <c-r>=InsertTabWrapper()<cr>
-" inoremap <s-tab> <c-n>
+" Multipurpose Tab Key --------------------------------------------------------
+" Indent if we're at the beginning of a line. Else, do completion.
+ function! InsertTabWrapper()
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+       return "\<tab>"
+    else
+       return "\<c-p>"
+       " return "\<C-X>\<C-O>"
+    endif
+endfunction
+inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+inoremap <s-tab> <c-n>
 
 
 " FZF -------------------------------------------------------------------------

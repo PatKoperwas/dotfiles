@@ -1,10 +1,11 @@
 #!/bin/sh
 set -e
+
 PATH="/usr/local/bin:$PATH"
 dir="`git rev-parse --git-dir`"
 trap 'rm -f "$dir/$$.tags"' EXIT
 
 git ls-files | \
-  ctags --tag-relative -L - -f"$dir/$$.tags" --languages=-javascript,sql --exclude=public --exclude=tmp --exclue=vendor
+  "${CTAGS:-ctags}" --tag-relative -L - -f"$dir/$$.tags" --languages=-javascript,sql --exclude=log,tmp,vendor
 
 mv "$dir/$$.tags" "$dir/tags"
