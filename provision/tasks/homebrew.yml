@@ -9,13 +9,14 @@
     - openssl
     - reattach-to-user-namespace
     - tmux
-    - vim
+    - --with-python --with-python3 vim 
     - the_silver_searcher
     - redis
     - ctags
     - phantomjs
     - yarn
     - dep
+    - python3
 
 - name: Install Homebrew Cask Apps
   homebrew_cask: name={{ item }} state=present

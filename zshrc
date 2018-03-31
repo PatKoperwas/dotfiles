@@ -37,6 +37,9 @@ export FZF_DEFAULT_COMMAND='ag -g ""'
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
+# Rust
+export PATH="$HOME/.cargo/bin:$PATH"
+
 # MySQL
 MYSQL=/usr/local/mysql/bin
 export PATH=$PATH:$MYSQL

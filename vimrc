@@ -10,12 +10,12 @@ Plug 'benmills/vimux'
 Plug 'elixir-lang/vim-elixir'
 Plug 'fatih/vim-go'
 Plug 'foosoft/vim-argwrap'
-Plug 'itchyny/lightline.vim'
 Plug 'janko-m/vim-test'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/vim-easy-align'
 Plug 'kana/vim-textobj-user'
 Plug 'morhetz/gruvbox'
+Plug 'mxw/vim-jsx'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'ngmy/vim-rubocop'
 Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
@@ -31,8 +31,10 @@ Plug 'tpope/vim-rails'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.py --gocode-completer' }
-" Plug 'vim-syntastic/syntastic'
+Plug 'vim-syntastic/syntastic'
 Plug 'vundlevim/vundle.vim'
+Plug 'Shougo/neocomplete.vim'
+
 
 call plug#end()
 
@@ -57,6 +59,7 @@ set hlsearch
 set ignorecase smartcase
 set incsearch
 set laststatus=2
+set statusline=%f
 set number
 set numberwidth=6
 set pastetoggle=<leader>p
@@ -69,6 +72,7 @@ set showtabline=0
 set softtabstop=2
 set switchbuf=useopen
 set t_ti= t_te= " Prevent Vim from clobbering the scrollback buffer.
+set title
 set tabstop=2
 set timeoutlen=1000 ttimeoutlen=0
 set wildmenu
@@ -208,10 +212,15 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 
 
-" Status Line -----------------------------------------------------------------
-let g:Powerline_symbols = 'fancy'
-set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
-
+" " Lightline -------------------------------------------------------------------
+let g:gitgutter_override_sign_column_highlight = 0
+"
+" let g:lightline = {
+"       \ 'active': {
+"       \   'right': [ ],
+"       \ },
+"       \ }
+"
 
 " Ruby Blocks -----------------------------------------------------------------
 runtime macros/matchit.vim
@@ -273,7 +282,6 @@ map <Leader>P :call Debugging("O")<cr>
 " syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
 
 " let g:syntastic_always_populate_loc_list = 1
 " let g:syntastic_auto_loc_list = 1
@@ -287,3 +295,35 @@ let g:syntastic_scss_checkers = ['sassc']
 
 " closetag
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.html.erb"
+
+
+" neocomplete
+let g:acp_enableAtStartup = 0
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? "\<C-y>" : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+
+if !exists('g:neocomplete#force_omni_input_patterns')
+  let g:neocomplete#force_omni_input_patterns = {}
+endif
+
+let g:neocomplete#force_omni_input_patterns.go = '[^.[:digit:] *\t]\.'
