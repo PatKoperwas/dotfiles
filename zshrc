@@ -1,11 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
-
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="patkoperwas"
+export ZSH=$HOME/.zsh
 
 # use vim as the visual editor
 export VISUAL=vim
@@ -13,12 +7,10 @@ export EDITOR=$VISUAL
 export DISABLE_AUTO_TITLE=true
 
 # Plugins
-plugins=(git)
+# plugins=(git)
 
-source $ZSH/oh-my-zsh.sh
-
-# User configuration
-export PATH="/usr/local/rbenv/shims:/usr/local/rbenv/bin:/usr/local/pgsql/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/opt/ruby/bin/"
+# Rbenv configuration
+export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
 # Bin Stubs
@@ -56,16 +48,10 @@ export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export CLICOLOR=1
 
 # Go
-export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/Documents/Code/golang
+export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin
 
-# Kiex
-test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
-
 # Yarn
 export PATH="$PATH:$HOME/.config/yarn/global/node_modules/.bin"
-
-# OPAM configuration
-. /Users/patrickkoperwas/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
