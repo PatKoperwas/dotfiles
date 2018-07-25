@@ -7,21 +7,21 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'airblade/vim-gitgutter'
 Plug 'benmills/vimux'
-Plug 'elixir-lang/vim-elixir'
 Plug 'fatih/vim-go'
 Plug 'foosoft/vim-argwrap'
 Plug 'janko-m/vim-test'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/vim-easy-align'
 Plug 'kana/vim-textobj-user'
-Plug 'morhetz/gruvbox'
 Plug 'mxw/vim-jsx'
 Plug 'nelstrom/vim-textobj-rubyblock'
-Plug 'ngmy/vim-rubocop'
+Plug 'nlknguyen/papercolor-theme'
 Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 Plug 'pangloss/vim-javascript'
+Plug 'Shougo/deoplete.nvim'
 Plug 'posva/vim-vue'
 Plug 'rking/ag.vim'
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'scrooloose/nerdtree'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-endwise'
@@ -30,10 +30,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-" Plug 'Valloric/YouCompleteMe', { 'do': './install.py --gocode-completer' }
-Plug 'vim-syntastic/syntastic'
 Plug 'vundlevim/vundle.vim'
-Plug 'Shougo/neocomplete.vim'
 
 
 call plug#end()
@@ -83,8 +80,7 @@ set winwidth=90
 " Color -----------------------------------------------------------------------
 set background=dark
 set t_Co=256
-colorscheme gruvbox
-let g:gruvbox_termcolors=16
+colorscheme PaperColor
 
 
 " Motions & Key Maps ----------------------------------------------------------
@@ -112,7 +108,11 @@ nnoremap K :Ag "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " Strip trailing whitespace
 nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+
+" Clear search with enter
 nnoremap <cr> :nohlsearch<cr>
+
+" Save shortcut
 nmap <leader>w :w!<cr>
 
 " Close buffer without closing split
@@ -156,6 +156,10 @@ autocmd BufRead,BufNewFile *.md setlocal spell
 endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <s-tab> <c-n>
+
+
+" Deoplete --------------------------------------------------------------------
+let g:deoplete#enable_at_startup = 1
 
 
 " FZF -------------------------------------------------------------------------
@@ -212,15 +216,9 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 
 
-" " Lightline -------------------------------------------------------------------
+" GitGutter -------------------------------------------------------------------
 let g:gitgutter_override_sign_column_highlight = 0
-"
-" let g:lightline = {
-"       \ 'active': {
-"       \   'right': [ ],
-"       \ },
-"       \ }
-"
+
 
 " Ruby Blocks -----------------------------------------------------------------
 runtime macros/matchit.vim
@@ -234,10 +232,6 @@ map <C-n> :NERDTreeToggle<CR>
 let g:vimrubocop_config = '.rubocop.yml'
 let g:vimrubocop_rubocop_cmd = 'bundle exec rubocop '
 nmap <Leader>c :RuboCop<CR>
-
-
-" Easy Align ------------------------------------------------------------------
-vmap <Enter> <Plug>(EasyAlign)
 
 
 " vim-test --------------------------------------------------------------------
@@ -277,53 +271,35 @@ map <Leader>P :call Debugging("O")<cr>
 
 " random commands -------------------------------------------------------------
 :command! ChangeHashSyntax %s/:\([^ ]*\)\(\s*\)=>/\1:/g
+" ## added by OPAM user-setup for vim / base ## 93ee63e278bdfc07d1139a748ed3fff2 ## you can edit, but keep this line
+let s:opam_share_dir = system("opam config var share")
+let s:opam_share_dir = substitute(s:opam_share_dir, '[\r\n]*$', '', '')
 
+let s:opam_configuration = {}
 
-" syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
- "let g:syntastic_check_on_wq = 0
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_vue_checkers = ['eslint']
-let g:syntastic_ignore_files = ['**/*.html']
-let g:syntastic_sass_checkers = ['sassc']
-let g:syntastic_scss_checkers = ['sassc']
-
-" closetag
-let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.html.erb"
-
-
-" neocomplete
-let g:acp_enableAtStartup = 0
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-
-" Plugin key-mappings.
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? "\<C-y>" : "\<CR>"
+function! OpamConfOcpIndent()
+  execute "set rtp^=" . s:opam_share_dir . "/ocp-indent/vim"
 endfunction
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+let s:opam_configuration['ocp-indent'] = function('OpamConfOcpIndent')
 
-if !exists('g:neocomplete#force_omni_input_patterns')
-  let g:neocomplete#force_omni_input_patterns = {}
-endif
+function! OpamConfOcpIndex()
+  execute "set rtp+=" . s:opam_share_dir . "/ocp-index/vim"
+endfunction
+let s:opam_configuration['ocp-index'] = function('OpamConfOcpIndex')
 
-let g:neocomplete#force_omni_input_patterns.go = '[^.[:digit:] *\t]\.'
+function! OpamConfMerlin()
+  let l:dir = s:opam_share_dir . "/merlin/vim"
+  execute "set rtp+=" . l:dir
+endfunction
+let s:opam_configuration['merlin'] = function('OpamConfMerlin')
+
+let s:opam_packages = ["ocp-indent", "ocp-index", "merlin"]
+let s:opam_check_cmdline = ["opam list --installed --short --safe --color=never"] + s:opam_packages
+let s:opam_available_tools = split(system(join(s:opam_check_cmdline)))
+for tool in s:opam_packages
+  " Respect package order (merlin should be after ocp-index)
+  if count(s:opam_available_tools, tool) > 0
+    call s:opam_configuration[tool]()
+  endif
+endfor
+" ## end of OPAM user-setup addition for vim / base ## keep this line
