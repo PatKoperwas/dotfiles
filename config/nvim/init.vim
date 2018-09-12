@@ -110,10 +110,10 @@ augroup trailingWhitespace
   autocmd BufWritePre * :%s/\s\+$//e
 augroup END
 
-" Autoformat
-augroup fmt
+" Filetyped
+augroup FiletypeGroup
   autocmd!
-  autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue undojoin | Neoformat
+  au BufNewFile,BufRead *.jsx set filetype=javascript.jsx
 augroup END
 
 " Deoplete Window
@@ -185,6 +185,7 @@ let g:tern#command = ["tern"]
 let g:tern#arguments = ["--persistent"]
 let g:deoplete#sources#tss#javascript_support = 1
 
+
 " Vim Go ----------------------------------------------------------------------
 au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
@@ -206,3 +207,24 @@ let test#strategy = "vimux"
 
 " Nerd Tree -------------------------------------------------------------------
 map <C-n> :NERDTreeToggle<CR>
+
+
+" Vim Go ----------------------------------------------------------------------
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test-func)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+let g:go_fmt_command = "goimports"
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+
+
+" Ale -------------------------------------------------------------------------
+let g:ale_fixers = {
+\  'javascript': ['eslint'],
+\  'jsx': ['eslint'],
+\}
+let g:ale_fix_on_save = 1

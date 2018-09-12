@@ -14,8 +14,14 @@ set -gx PATH ./bin $PATH
 set --export GOPATH $HOME/Documents/Code/golang
 set -gx PATH $GOPATH/bin $PATH
 
+# Dotnet
+set -gx PATH /usr/local/share/dotnet $PATH
+
 # PostgreSQL
 set -gx PATH /Applications/Postgres.app/Contents/Versions/latest/bin $PATH
+
+# NPM
+set -gx PATH ./node_modules/.bin $PATH
 
 # FZF
 set -Ux FZF_DEFAULT_COMMAND "rg -l ''"
