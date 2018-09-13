@@ -5,7 +5,7 @@ set -e
 cd "$HOME"
 
 # Dotfiles
-for link in .gitconfig .tmux.conf; do
+for link in .config .gitconfig .git_template .tmux.conf; do
   if [ -L "$HOME/$link" ]; then
     echo "Link '$link' already exists"
   else
@@ -27,6 +27,7 @@ sudo apt-get install -y \
   libreadline-dev \
   libmemcached-tools \
   libicu-dev \
+  nodejs\
   memcached \
   postgresql \
   postgresql-contrib \
@@ -35,6 +36,33 @@ sudo apt-get install -y \
   wget \
   zlib1g-dev
 
+# Fish Shell
+if command -v fish; then
+  echo "Fish already installed"
+else
+  sudo apt-add-repository ppa:fish-shell/release-2
+  sudo apt-get update
+  sudo apt-get install fish
+
+  echo /usr/local/bin/fish | sudo tee -a /etc/shells
+
+  chsh -s /usr/local/bin/fish
+fi
+
+# Fisher
+if command -v fisher; then
+  echo "Fisherman has already been installed"
+else
+  curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs https://git.io/fisher
+fi
+
+# Ripgrep
+if command -v rg; then
+  echo "Ripgrep already installe"
+else
+  curl -LO https://github.com/BurntSushi/ripgrep/releases/download/0.10.0/ripgrep_0.10.0_amd64.deb
+  sudo dpkg -i ripgrep_0.10.0_amd64.deb
+fi
 
 # FZF
 if command -v fzf; then
@@ -84,3 +112,7 @@ else
   sudo apt-get update
   sudo apt-get install neovim
 fi
+
+# Vim-Plug
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim

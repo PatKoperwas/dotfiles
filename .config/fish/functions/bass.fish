@@ -1,0 +1,1 @@
+/home/vagrant/.config/fisherman/bass/functions/bass.fish

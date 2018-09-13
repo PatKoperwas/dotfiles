@@ -1,0 +1,1 @@
+/home/vagrant/.config/fisherman/fzf/functions/__fzfcmd.fish

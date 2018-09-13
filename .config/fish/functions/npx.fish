@@ -1,0 +1,1 @@
+/home/vagrant/.config/fisherman/nvm/functions/npx.fish
