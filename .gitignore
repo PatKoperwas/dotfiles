@@ -1,1 +1,3 @@
 .config/nvim/plugged
+.config/configstore
+.config/fish/fishd*
