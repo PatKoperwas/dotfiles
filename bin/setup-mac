@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+set -e
+
+cd "$HOME"
+
+# Dotfiles
+for link in .config .gitconfig .git_template .tmux.conf; do
+  if [ -L "$HOME/$link" ]; then
+    echo "Link '$link' already exists"
+  else
+    ln -s .dotfiles/$link .
+  fi
+done

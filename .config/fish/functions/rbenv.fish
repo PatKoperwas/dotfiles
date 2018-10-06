@@ -1,1 +1,0 @@
-/home/vagrant/.config/fisherman/rbenv/functions/rbenv.fish
