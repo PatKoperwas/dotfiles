@@ -25,7 +25,7 @@ set hlsearch
 set ignorecase smartcase
 set incsearch
 set laststatus=2
-set statusline=%f
+set noswapfile
 set number
 set numberwidth=6
 set pastetoggle=<leader>p
@@ -35,6 +35,7 @@ set shiftwidth=2
 set showcmd
 set showmatch
 set showtabline=0
+set statusline=%f
 set switchbuf=useopen
 set t_ti= t_te= " Prevent Vim from clobbering the scrollback buffer.
 set title
