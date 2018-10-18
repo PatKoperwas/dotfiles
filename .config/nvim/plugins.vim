@@ -13,6 +13,10 @@ Plug 'zchee/deoplete-go', { 'do': 'make'}
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install -g tern' }
 Plug 'carlitux/deoplete-ternjs'
 
+" Typescript
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+
 " Snippets
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
@@ -43,5 +47,8 @@ Plug 'tpope/vim-eunuch'
 
 " Vim-Go
 Plug 'fatih/vim-go'
+
+" Comment Stuff out
+Plug 'tomtom/tcomment_vim'
 
 call plug#end()

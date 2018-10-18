@@ -227,5 +227,6 @@ let g:go_highlight_build_constraints = 1
 let g:ale_fixers = {
 \  'javascript': ['eslint'],
 \  'jsx': ['eslint'],
+\  'tsx': ['prettier'],
 \}
 let g:ale_fix_on_save = 1
