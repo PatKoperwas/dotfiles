@@ -44,6 +44,7 @@ Plug 'scrooloose/nerdtree'
 
 " Vim sugar for the UNIX shell commands that need it the most
 Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-fugitive'
 
 " Vim-Go
 Plug 'fatih/vim-go'
@@ -51,4 +52,14 @@ Plug 'fatih/vim-go'
 " Comment Stuff out
 Plug 'tomtom/tcomment_vim'
 
+" Indentation Guides
+Plug 'Yggdroot/indentLine'
+
+" Ruby
+Plug 'vim-ruby/vim-ruby'
+
+" Elm
+" Plug 'elmcast/elm-vim'
+
 call plug#end()
+

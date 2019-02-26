@@ -35,3 +35,10 @@ end
 if set -q FZF_COMPLETE
     bind \t '__fzf_complete'
 end
+
+function fzf_key_bindings_uninstall -e fzf_key_bindings_uninstall
+    set -l _bindings (bind -a | sed -En "s/(')?__fzf.*\$//p" | sed 's/bind/bind -e/')
+    for binding in $_bindings
+        eval $binding
+    end
+end

@@ -17,6 +17,7 @@ set backup
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set cmdheight=1
 set colorcolumn=80
+set conceallevel=0
 set cursorline
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set hidden
@@ -47,13 +48,14 @@ set winwidth=90
 " Color -----------------------------------------------------------------------
 set t_Co=256
 let g:seoul256_background = 233
-colo seoul256
+"colo seoul256
+colo purpleish
 highlight MatchParen ctermbg=black
 
 " Motions & Key Maps ----------------------------------------------------------
 " Map Leader Key to space
 let mapleader = "\<Space>"
-nmap <Blash> <Space>
+" nmap <Blash> <Space>
 
 " Move by wrapped line
 nmap k gk
@@ -77,6 +79,9 @@ nmap <leader>w :w!<cr>
 " Make Y behave the same as C and D
 noremap Y y$
 
+" Toggle Fold
+nmap \ za
+
 " Custom Autocmds -------------------------------------------------------------
 filetype plugin indent on
 
@@ -88,7 +93,7 @@ augroup indentation
     \ endif
 
     " for ruby, autoindent with two spaces, always expand tabs
-    autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber,yml set ai sw=2 sts=2 et
+    autocmd FileType elm,ruby,haml,eruby,yaml,html,javascript,sass,cucumber,yml set ai sw=2 sts=2 et
 
     " for go
     au BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4
@@ -160,7 +165,6 @@ nnoremap <silent> <Leader>b :call fzf#run({
 \ })<CR>
 
 
-
 " Deoplete --------------------------------------------------------------------
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#auto_complete_delay = 0
@@ -228,5 +232,11 @@ let g:ale_fixers = {
 \  'javascript': ['eslint'],
 \  'jsx': ['eslint'],
 \  'tsx': ['prettier'],
+\  'ruby': [],
 \}
-let g:ale_fix_on_save = 1
+let g:ale_fix_on_save = 0
+
+
+" Ruby ------------------------------------------------------------------------
+let ruby_fold = 1
+let ruby_foldable_groups = 'def'
