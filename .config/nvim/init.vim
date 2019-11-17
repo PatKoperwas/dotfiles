@@ -135,7 +135,7 @@ map <leader>gr :topleft :split config/routes.rb<cr>
 map <leader>gg :topleft 20 :split Gemfile<cr>
 
 map <Leader>f :FZF<CR>
-map <Leader>ga :FZF app/assets<CR>
+map <Leader>ga :FZF app/<CR>
 map <Leader>gv :FZF app/views<CR>
 map <Leader>gc :FZF app/controllers<CR>
 map <Leader>gm :FZF app/models<CR>
@@ -172,15 +172,6 @@ set splitbelow
 
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-
-" Neosnippet ------------------------------------------------------------------
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-let g:neosnippet#enable_snipmate_compatibility = 1
-let g:neosnippet#snippets_directory='~/.config/nvim/plugged/vim-snippets/snippets'
 
 
 " Tern ------------------------------------------------------------------------
@@ -234,6 +225,11 @@ let g:ale_fixers = {
 \  'tsx': ['prettier'],
 \  'ruby': [],
 \}
+
+let g:ale_linters = {
+\ 'ruby': ['ruby', 'rubocop', 'rails_best_practices'],
+\}
+
 let g:ale_fix_on_save = 0
 
 

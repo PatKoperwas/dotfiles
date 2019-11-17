@@ -33,7 +33,6 @@ set -Ux FZF_CTRL_T_COMMAND "rg -l ''"
 set -gx PATH $HOME/.rbenv/shims $PATH
 rbenv rehash >/dev/null ^&1
 
-
 # Fisher Load Custom Key Bindings
 if functions -q fish_user_key_bindings
   if not functions -q _keybinder_fish_user_key_bindings
@@ -51,3 +50,9 @@ function fish_user_key_bindings
     _keybinder_fish_user_key_bindings
     end
   end
+
+source ~/.iterm2_shell_integration.fish
+function iterm2_print_user_vars
+  set -l git_branch (git branch ^/dev/null | sed -n '/\* /s///p')
+  iterm2_set_user_var gitBranch "$git_branch"
+end

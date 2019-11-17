@@ -2,3 +2,5 @@
 .config/configstore
 .config/fish/fishd*
 .config/yarn/
+.config/karabiner/
+.config/nvm/
