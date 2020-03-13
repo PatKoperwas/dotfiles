@@ -166,8 +166,12 @@ nnoremap <silent> <Leader>b :call fzf#run({
 
 
 " Deoplete --------------------------------------------------------------------
+let g:python3_host_prog = '/usr/local/bin/python3'
+let g:python3_host_skip_check = 1
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#auto_complete_delay = 0
+let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
+let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
 set splitbelow
 
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -192,10 +196,10 @@ let g:deoplete#sources#tss#javascript_support = 1
 
 
 " Vim Go ----------------------------------------------------------------------
-au FileType go nmap <leader>r <Plug>(go-run)
-au FileType go nmap <leader>b <Plug>(go-build)
-au FileType go nmap <leader>t <Plug>(go-test-func)
-au FileType go nmap <leader>c <Plug>(go-coverage)
+" au FileType go nmap <leader>r <Plug>(go-run)
+" au FileType go nmap <leader>b <Plug>(go-build)
+" au FileType go nmap <leader>t <Plug>(go-test-func)
+" au FileType go nmap <leader>c <Plug>(go-coverage)
 let g:go_fmt_command = "goimports"
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
@@ -212,19 +216,6 @@ let test#strategy = "vimux"
 
 " Nerd Tree -------------------------------------------------------------------
 map <C-n> :NERDTreeToggle<CR>
-
-
-" Vim Go ----------------------------------------------------------------------
-au FileType go nmap <leader>r <Plug>(go-run)
-au FileType go nmap <leader>b <Plug>(go-build)
-au FileType go nmap <leader>t <Plug>(go-test-func)
-au FileType go nmap <leader>c <Plug>(go-coverage)
-let g:go_fmt_command = "goimports"
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
 
 
 " Ale -------------------------------------------------------------------------

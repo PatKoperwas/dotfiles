@@ -9,7 +9,7 @@ Plug 'junegunn/seoul256.vim'
 
 " Autocomplete
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-go', { 'do': 'make'}
+Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install -g tern' }
 Plug 'carlitux/deoplete-ternjs'
 
@@ -53,7 +53,7 @@ Plug 'fatih/vim-go'
 Plug 'tomtom/tcomment_vim'
 
 " Indentation Guides
-Plug 'Yggdroot/indentLine'
+" Plug 'Yggdroot/indentLine'
 
 " Ruby
 Plug 'vim-ruby/vim-ruby'
