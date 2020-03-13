@@ -3,3 +3,4 @@
 .config/fish/fishd*
 .config/yarn/
 .config/xbuild/
+.config/htop/
