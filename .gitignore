@@ -4,3 +4,4 @@
 .config/yarn/
 .config/karabiner/
 .config/nvm/
+.config/coc

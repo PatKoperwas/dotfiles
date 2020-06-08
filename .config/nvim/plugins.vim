@@ -11,14 +11,11 @@ Plug 'junegunn/seoul256.vim'
 Plug 'fatih/vim-go'
 
 " Autocomplete
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-go', { 'do': 'make'}
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install -g tern' }
-Plug 'carlitux/deoplete-ternjs'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Typescript
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+" Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 
 " Prettify
 " Plug 'sbdchd/neoformat'
@@ -53,13 +50,16 @@ Plug 'tomtom/tcomment_vim'
 " Ruby
 Plug 'vim-ruby/vim-ruby'
 
+" Rust
+Plug 'rust-lang/rust.vim'
+
 " ReasonML
-Plug 'reasonml-editor/vim-reason-plus'
+" Plug 'reasonml-editor/vim-reason-plus'
 
-Plug 'autozimu/LanguageClient-neovim', {
-  \ 'branch': 'next',
-  \ 'do': 'bash install.sh',
-  \ }
-
+" Plug 'autozimu/LanguageClient-neovim', {
+"   \ 'branch': 'next',
+"   \ 'do': 'bash install.sh',
+"   \ }
+"
 call plug#end()
 

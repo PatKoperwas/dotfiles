@@ -33,6 +33,9 @@ set -Ux FZF_CTRL_T_COMMAND "rg -l ''"
 set -gx PATH $HOME/.rbenv/shims $PATH
 rbenv rehash >/dev/null ^&1
 
+# Rust
+set -gx PATH $HOME/.cargo/bin $PATH
+
 # Fisher Load Custom Key Bindings
 if functions -q fish_user_key_bindings
   if not functions -q _keybinder_fish_user_key_bindings

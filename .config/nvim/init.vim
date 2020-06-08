@@ -15,7 +15,7 @@ set smarttab
 " Basic Editing Configuration -------------------------------------------------
 set backup
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-set cmdheight=1
+set cmdheight=2
 set colorcolumn=80
 set conceallevel=0
 set cursorline
@@ -32,7 +32,9 @@ set numberwidth=6
 set pastetoggle=<leader>p
 set ruler
 set scrolloff=3
+set signcolumn=yes
 set shiftwidth=2
+set shortmess+=c
 set showcmd
 set showmatch
 set showtabline=0
@@ -41,6 +43,7 @@ set switchbuf=useopen
 set t_ti= t_te= " Prevent Vim from clobbering the scrollback buffer.
 set title
 set timeoutlen=1000 ttimeoutlen=0
+set updatetime=300
 set wildmenu
 set wildmode=longest,list
 set winwidth=90
@@ -130,6 +133,10 @@ function! Preview_func()
 endfunction
 autocmd WinEnter * call Preview_func()
 
+" Typescript
+autocmd BufEnter *.tsx set filetype=typescript
+
+
 " FZF -------------------------------------------------------------------------
 map <leader>gr :topleft :split config/routes.rb<cr>
 map <leader>gg :topleft 20 :split Gemfile<cr>
@@ -165,6 +172,59 @@ nnoremap <silent> <Leader>b :call fzf#run({
 \ })<CR>
 
 
+" CoC -------------------------------------------------------------------------
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
+if exists('*complete_info')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder.
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+
 " Deoplete --------------------------------------------------------------------
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#auto_complete_delay = 0
@@ -182,19 +242,6 @@ let g:tern#arguments = ["--persistent"]
 let g:deoplete#sources#tss#javascript_support = 1
 
 
-" Vim Go ----------------------------------------------------------------------
-au FileType go nmap <leader>r <Plug>(go-run)
-au FileType go nmap <leader>b <Plug>(go-build)
-au FileType go nmap <leader>t <Plug>(go-test-func)
-au FileType go nmap <leader>c <Plug>(go-coverage)
-let g:go_fmt_command = "goimports"
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-
-
 " vim-test --------------------------------------------------------------------
 nmap <silent> <leader>t :TestNearest<CR>
 nmap <silent> <leader>T :TestFile<CR>
@@ -206,10 +253,10 @@ map <C-n> :NERDTreeToggle<CR>
 
 
 " Vim Go ----------------------------------------------------------------------
-au FileType go nmap <leader>r <Plug>(go-run)
-au FileType go nmap <leader>b <Plug>(go-build)
-au FileType go nmap <leader>t <Plug>(go-test-func)
-au FileType go nmap <leader>c <Plug>(go-coverage)
+" au FileType go nmap <leader>r <Plug>(go-run)
+" au FileType go nmap <leader>b <Plug>(go-build)
+" au FileType go nmap <leader>t <Plug>(go-test-func)
+" au FileType go nmap <leader>c <Plug>(go-coverage)
 let g:go_fmt_command = "goimports"
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
@@ -236,3 +283,9 @@ let g:ale_fix_on_save = 0
 " Ruby ------------------------------------------------------------------------
 let ruby_fold = 1
 let ruby_foldable_groups = 'def'
+
+
+" Rust ------------------------------------------------------------------------
+let g:rustfmt_autosave = 1
+let g:rustfmt_emit_files = 1
+let g:rustfmt_fail_silently = 0
