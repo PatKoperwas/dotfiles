@@ -4,6 +4,22 @@ set -e
 
 cd "$HOME"
 
+# Brew
+if [[ $(command -v brew) == "" ]]; then
+  echo "Installing Hombrew"
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
+
+# Fish
+if [[ $(command -v fish) == "" ]]; then
+  echo "Installing fish"
+  brew install fish
+
+  echo "Setting fish as default shell"
+  echo /usr/local/bin/fish | sudo tee -a /etc/shells
+  chsh -s /usr/local/bin/fish
+fi
+
 # Dotfiles
 for link in .config .gitconfig .git_template .tmux.conf; do
   if [ -L "$HOME/$link" ]; then
@@ -12,3 +28,35 @@ for link in .config .gitconfig .git_template .tmux.conf; do
     ln -s .dotfiles/$link .
   fi
 done
+
+# Packages
+for item in tmux rbenv ruby-build python3 yarn ripgrep the_silver_searcher; do
+  if [[ $(command -v $item) == "" ]]; then
+    echo "Installing $item"
+    brew install $item
+  fi
+done
+
+# Configure Node
+if [[ $(command -v node) == "" ]]; then
+  fisher add jorgebucaran/fish-nvm
+  nvm use lts
+
+  npm install typescript
+fi
+
+
+# Configure Neovim
+if [[ $(command -v nvim) == "" ]]; then
+  echo "Installing neovim"
+  npm install -g neovim
+  pip3 install --user pynvim
+  brew install neovim
+  pip3 install neovim
+fi
+
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+nvim +PlugInstall +qall
+nvim +UpdateRemotePlugins +qall

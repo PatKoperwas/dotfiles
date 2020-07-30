@@ -2,6 +2,9 @@
 .config/configstore
 .config/fish/fishd*
 .config/yarn/
+.config/karabiner/
+.config/nvm/
+.config/coc
 .config/xbuild/
 .config/htop/
 .config/fish/fish_variables

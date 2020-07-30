@@ -7,23 +7,16 @@ Plug 'junegunn/fzf.vim'
 " ColorScheme
 Plug 'junegunn/seoul256.vim'
 
+" Golang
+Plug 'fatih/vim-go'
+
 " Autocomplete
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install -g tern' }
-Plug 'carlitux/deoplete-ternjs'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Typescript
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
-
-" Snippets
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
-Plug 'honza/vim-snippets'
 
 " Prettify
-" Plug 'sbdchd/neoformat'
 Plug 'w0rp/ale'
 
 " Javascrip
@@ -52,14 +45,11 @@ Plug 'fatih/vim-go'
 " Comment Stuff out
 Plug 'tomtom/tcomment_vim'
 
-" Indentation Guides
-" Plug 'Yggdroot/indentLine'
-
 " Ruby
 Plug 'vim-ruby/vim-ruby'
 
-" Elm
-" Plug 'elmcast/elm-vim'
-
+" Rust
+Plug 'rust-lang/rust.vim'
+"
 call plug#end()
 
