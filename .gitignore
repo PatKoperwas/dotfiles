@@ -5,3 +5,5 @@
 .config/karabiner/
 .config/nvm/
 .config/coc
+.config/xbuild/
+.config/htop/
