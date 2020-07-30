@@ -51,3 +51,6 @@ function fish_user_key_bindings
     _keybinder_fish_user_key_bindings
     end
   end
+
+# OPAM configuration
+. /Users/patrickkoperwas/.opam/opam-init/init.fish > /dev/null 2> /dev/null or true

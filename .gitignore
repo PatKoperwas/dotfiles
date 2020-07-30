@@ -4,3 +4,4 @@
 .config/yarn/
 .config/xbuild/
 .config/htop/
+.config/fish/fish_variables

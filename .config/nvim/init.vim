@@ -222,7 +222,7 @@ map <C-n> :NERDTreeToggle<CR>
 let g:ale_fixers = {
 \  'javascript': ['eslint'],
 \  'jsx': ['eslint'],
-\  'tsx': ['prettier'],
+\  'tsx': ['eslint', 'prettier'],
 \  'ruby': [],
 \}
 let g:ale_fix_on_save = 0
