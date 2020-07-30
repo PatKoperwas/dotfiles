@@ -141,16 +141,16 @@ autocmd BufEnter *.tsx set filetype=typescript
 map <leader>gr :topleft :split config/routes.rb<cr>
 map <leader>gg :topleft 20 :split Gemfile<cr>
 
-map <Leader>f :FZF<CR>
-map <Leader>ga :FZF app/<CR>
-map <Leader>gv :FZF app/views<CR>
-map <Leader>gc :FZF app/controllers<CR>
-map <Leader>gm :FZF app/models<CR>
-map <Leader>gh :FZF app/helpers<CR>
-map <leader>gs :FZF spec/<cr>
-map <leader>gl :FZF lib<cr>
-map <leader>gp :FZF config<cr>
-map <leader>gf :FZF spec/features<cr>
+map <Leader>f :Files<CR>
+map <Leader>ga :Files app/<CR>
+map <Leader>gv :Files app/views<CR>
+map <Leader>gc :Files app/controllers<CR>
+map <Leader>gm :Files app/models<CR>
+map <Leader>gh :Files app/helpers<CR>
+map <leader>gs :Files spec/<cr>
+map <leader>gl :Files lib<cr>
+map <leader>gp :Files config<cr>
+map <leader>gf :Files spec/features<cr>
 map <leader>q :bd!<CR>
 
 function! s:buflist()
@@ -225,22 +225,13 @@ augroup end
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 
-" Deoplete --------------------------------------------------------------------
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#auto_complete_delay = 0
-set splitbelow
-
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-
-" Tern ------------------------------------------------------------------------
-let g:tern_request_timeout = 1
-let g:tern_request_timeout = 6000
-let g:tern#command = ["tern"]
-let g:tern#arguments = ["--persistent"]
-let g:deoplete#sources#tss#javascript_support = 1
-
+" " Tern ------------------------------------------------------------------------
+" let g:tern_request_timeout = 1
+" let g:tern_request_timeout = 6000
+" let g:tern#command = ["tern"]
+" let g:tern#arguments = ["--persistent"]
+" let g:deoplete#sources#tss#javascript_support = 1
+"
 
 " vim-test --------------------------------------------------------------------
 nmap <silent> <leader>t :TestNearest<CR>

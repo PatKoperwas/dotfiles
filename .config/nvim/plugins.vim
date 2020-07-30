@@ -15,10 +15,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Typescript
 Plug 'HerringtonDarkholme/yats.vim'
-" Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 
 " Prettify
-" Plug 'sbdchd/neoformat'
 Plug 'w0rp/ale'
 
 " Javascrip
@@ -52,14 +50,6 @@ Plug 'vim-ruby/vim-ruby'
 
 " Rust
 Plug 'rust-lang/rust.vim'
-
-" ReasonML
-" Plug 'reasonml-editor/vim-reason-plus'
-
-" Plug 'autozimu/LanguageClient-neovim', {
-"   \ 'branch': 'next',
-"   \ 'do': 'bash install.sh',
-"   \ }
 "
 call plug#end()
 
