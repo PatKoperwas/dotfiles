@@ -133,9 +133,6 @@ function! Preview_func()
 endfunction
 autocmd WinEnter * call Preview_func()
 
-" Typescript
-autocmd BufEnter *.tsx set filetype=typescript
-
 
 " FZF -------------------------------------------------------------------------
 map <leader>gr :topleft :split config/routes.rb<cr>
@@ -187,6 +184,12 @@ endfunction
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
 " position. Coc only does snippet and additional edit on confirm.
 " <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
@@ -221,6 +224,13 @@ augroup mygroup
   " Update signature help on jump placeholder.
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
+
+" Set filetype for .jsx and .tsx files
+augroup ReactFiletypes
+  autocmd!
+  autocmd BufRead,BufNewFile *.jsx set filetype=javascriptreact
+  autocmd BufRead,BufNewFile *.tsx set filetype=typescriptreact
+augroup END
 
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
@@ -261,6 +271,7 @@ let g:ale_fixers = {
 \  'javascript': ['eslint'],
 \  'jsx': ['eslint'],
 \  'tsx': ['prettier'],
+\  'typescriptreact': ['prettier'],
 \  'ruby': [],
 \}
 
