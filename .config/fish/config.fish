@@ -5,7 +5,9 @@ set fish_greeting ""
 alias gcm='git checkout master'
 alias glog='git log --oneline --decorate'
 
+# Alias
 alias vim='nvim'
+alias be='bundle exec'
 
 # Bins
 set -gx PATH ./bin $PATH
