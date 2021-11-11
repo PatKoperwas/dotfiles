@@ -59,8 +59,8 @@ function fish_user_key_bindings
 # OPAM configuration
 . /Users/patrickkoperwas/.opam/opam-init/init.fish > /dev/null 2> /dev/null or true
 
-source ~/.iterm2_shell_integration.fish
-function iterm2_print_user_vars
-  set -l git_branch (git branch ^/dev/null | sed -n '/\* /s///p')
-  iterm2_set_user_var gitBranch "$git_branch"
-end
+# source ~/.iterm2_shell_integration.fish
+# function iterm2_print_user_vars
+#   set -l git_branch (git branch ^/dev/null | sed -n '/\* /s///p')
+#   iterm2_set_user_var gitBranch "$git_branch"
+# end

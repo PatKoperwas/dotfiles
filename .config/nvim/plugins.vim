@@ -50,6 +50,10 @@ Plug 'vim-ruby/vim-ruby'
 
 " Rust
 Plug 'rust-lang/rust.vim'
+
+" Cake16 Colorscheme
+Plug 'zefei/cake16'
+
 "
 call plug#end()
 
