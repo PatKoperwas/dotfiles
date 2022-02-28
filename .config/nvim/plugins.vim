@@ -54,6 +54,9 @@ Plug 'rust-lang/rust.vim'
 " Cake16 Colorscheme
 Plug 'zefei/cake16'
 
+" Svelte
+Plug 'leafOfTree/vim-svelte-plugin'
+
 "
 call plug#end()
 

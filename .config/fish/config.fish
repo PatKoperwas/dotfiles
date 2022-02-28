@@ -64,3 +64,11 @@ function fish_user_key_bindings
 #   set -l git_branch (git branch ^/dev/null | sed -n '/\* /s///p')
 #   iterm2_set_user_var gitBranch "$git_branch"
 # end
+
+# M1 Chip / Brew 3.0
+set -gx PATH /usr/local/opt/libxml2/bin $PATH
+
+set -gx LDFLAGS "-L/usr/local/opt/libxml2/lib"
+set -gx CPPFLAGS "-I/usr/local/opt/libxml2/include"
+
+set -gx PKG_CONFIG_PATH "/usr/local/opt/libxml2/lib/pkgconfig"

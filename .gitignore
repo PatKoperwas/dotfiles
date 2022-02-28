@@ -8,3 +8,4 @@
 .config/xbuild/
 .config/htop/
 .config/fish/fish_variables
+.config/.DS_Store

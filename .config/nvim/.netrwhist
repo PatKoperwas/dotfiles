@@ -1,0 +1,3 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =1
+let g:netrw_dirhist_1='/Users/patrickkoperwas/Documents/Code/vantage/frontend/src/routes/admin/products'

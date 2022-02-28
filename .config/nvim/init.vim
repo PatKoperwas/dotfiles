@@ -275,11 +275,11 @@ let g:ale_fixers = {
 \  'jsx': ['eslint'],
 \  'tsx': ['prettier'],
 \  'typescriptreact': ['prettier'],
-\  'ruby': [],
+\  'ruby': ['rubocop'],
 \}
 
 let g:ale_linters = {
-\ 'ruby': ['ruby', 'rubocop', 'rails_best_practices'],
+\ 'ruby': ['rubocop'],
 \}
 
 let g:ale_fix_on_save = 0
@@ -288,9 +288,13 @@ let g:ale_fix_on_save = 0
 " Ruby ------------------------------------------------------------------------
 let ruby_fold = 1
 let ruby_foldable_groups = 'def'
+let g:ruby_indent_assignment_style = 'variable'
 
 
 " Rust ------------------------------------------------------------------------
 let g:rustfmt_autosave = 1
 let g:rustfmt_emit_files = 1
 let g:rustfmt_fail_silently = 0
+
+" Svelte ------------------------------------------------------------------------
+let g:vim_svelte_plugin_use_typescript = 1
