@@ -30,17 +30,22 @@ for link in .config .gitconfig .git_template .tmux.conf; do
 done
 
 # Packages
-for item in tmux rbenv ruby-build python3 yarn ripgrep the_silver_searcher; do
+for item in tmux rbenv fzf ruby-build python3 yarn ripgrep the_silver_searcher; do
   if [[ $(command -v $item) == "" ]]; then
     echo "Installing $item"
     brew install $item
   fi
 done
 
+# Install Fisher
+if [[ $(command -v fisher) == "" ]]; then
+  curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
+fi
+
 # Configure Node
-if [[ $(command -v node) == "" ]]; then
-  fisher add jorgebucaran/fish-nvm
-  nvm use lts
+ if [[ $(command -v node) == "" ]]; then
+  fisher install jorgebucaran/nvm.fish
+  nvm install latest
 
   npm install typescript
 fi

@@ -1,1 +1,1 @@
-/Users/patrickkoperwas/.fzf/shell/key-bindings.fish
+/Users/patrick.koperwas/.fzf/shell/key-bindings.fish

@@ -1,3 +1,6 @@
+# Set paths on M1
+set -U fish_user_paths /opt/homebrew/bin/ $fish_user_paths
+
 # Fish Config
 set fish_greeting ""
 
@@ -33,7 +36,7 @@ set -Ux FZF_CTRL_T_COMMAND "rg -l ''"
 # RBENV
 #set -gx PATH $HOME/.rbenv/bin $PATH
 set -gx PATH $HOME/.rbenv/shims $PATH
-rbenv rehash >/dev/null ^&1
+rbenv rehash >/dev/null 2>&1
 
 # Rust
 set -gx PATH $HOME/.cargo/bin $PATH
