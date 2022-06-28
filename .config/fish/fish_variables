@@ -45,4 +45,5 @@ SETUVAR fish_pager_color_prefix:white\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
 SETUVAR fish_user_paths:/opt/homebrew/bin/\x1e/opt/homebrew/bin/\x1e/Users/patrickkoperwas/\x2econfig/nvm/14\x2e18\x2e2/bin\x1e/Users/patrickkoperwas/\x2econfig/nvm/12\x2e14\x2e0/bin\x1e/Users/patrickkoperwas/\x2efzf/bin\x1e/Users/patrick\x2ekoperwas/\x2efzf/bin
 SETUVAR nvm_data:/Users/patrick\x2ekoperwas/\x2elocal/share/nvm
+SETUVAR nvm_default_version:16\x2e13\x2e1
 SETUVAR nvm_mirror:https\x3a//nodejs\x2eorg/dist

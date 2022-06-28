@@ -7,5 +7,9 @@
       "filetypes": ["go"]
     }
   },
-  "svelte.enable-ts-plugin": true
+  "svelte.enable-ts-plugin": true,
+  "vetur.validation.templateProps": true,
+  "vetur.validation.template": true,
+  "vetur.useWorkspaceDependencies": true,
+  "vetur.experimental.templateInterpolationService": true
 }

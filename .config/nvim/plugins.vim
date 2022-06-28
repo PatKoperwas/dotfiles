@@ -57,6 +57,9 @@ Plug 'zefei/cake16'
 " Svelte
 Plug 'leafOfTree/vim-svelte-plugin'
 
+" Vue
+Plug 'posva/vim-vue'
+
 "
 call plug#end()
 

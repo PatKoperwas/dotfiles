@@ -14,6 +14,7 @@ alias be='bundle exec'
 
 # Bins
 set -gx PATH ./bin $PATH
+set -gx PATH ~/bin $PATH
 
 ## Go
 set --export GOPATH $HOME/Documents/Code/golang
