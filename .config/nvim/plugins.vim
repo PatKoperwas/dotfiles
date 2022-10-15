@@ -10,9 +10,6 @@ Plug 'junegunn/seoul256.vim'
 " Golang
 Plug 'fatih/vim-go'
 
-" Autocomplete
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
 " Typescript
 Plug 'HerringtonDarkholme/yats.vim'
 
@@ -36,7 +33,7 @@ Plug 'foosoft/vim-argwrap'
 Plug 'scrooloose/nerdtree'
 
 " Vim sugar for the UNIX shell commands that need it the most
-Plug 'tpope/vim-eunuch'
+" Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 
 " Vim-Go
@@ -59,6 +56,9 @@ Plug 'leafOfTree/vim-svelte-plugin'
 
 " Vue
 Plug 'posva/vim-vue'
+
+" Autocomplete
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 "
 call plug#end()
